@@ -1,0 +1,284 @@
+body{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    background-color:plum;
+    color: white;
+    min-height: 500px;
+}
+
+input{
+    display: none;
+}
+label{
+    background-color: gold;
+    color: brown;
+    min-width: 60px;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 15px;
+    margin: 10px;
+    border: 0;
+}
+
+.smiley
+{
+    width: 100px;
+    height: 100px;
+    background-color: gold;
+    border-radius: 50%;
+    padding: 25px;
+    position: relative;
+    left: 45%;
+    top:20%;
+    
+}
+.eyes{
+    width: 100%;
+    margin-top: 15%;
+    padding: 0 5px;
+    box-sizing: border-box;
+    transition: all 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.eyes .eye{
+    width: 20px;
+    height: 20px;
+    background-color: brown;
+    position: relative;
+    border-radius: 50%;
+    float: left;
+}
+.eyes .eye:nth-of-type(2)
+{
+    float: right;
+}
+
+.mouth{
+    height: 30%;
+    width: 60%;
+    background-color: brown;
+    position: absolute;
+    left: 50%;
+    margin-left: -30%;
+    bottom: 18%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    transition: all 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.eyes .eye::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0%;
+    height: 0%;
+    top: -15px;
+    left: 5px;
+    transition: all 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+    background-color: gold;
+}
+
+.eyes .eye:first-of-type::after{
+    transform: rotate(0deg);
+    left: auto;
+    right: 5px;
+}
+/* normal smiley */
+#normal[type=radio]:checked ~ .smiley .mouth{
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px; 
+    height: 10%;
+    width: 40%;
+    bottom: 25%;
+    margin-left: -20%;
+}
+
+#normal[type=radio]:checked ~ .smiley .eyes{
+    margin-top: 30%;
+}
+/* angry smiley */
+#angry[type=radio]:checked ~ .smiley .mouth{
+    width: 40%;
+    height: 20%;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    bottom: 18%; 
+    left: 50%;
+    margin-left: -20%;
+}
+
+#angry[type=radio]:checked ~ .smiley .eyes{
+    margin-top: 30%;
+}
+.smiley.angry .eye::after,
+#angry[type=radio]:checked ~ .smiley .eye::after {
+    width: 120%;
+    height: 50%;
+    top: -3px;
+    left: -5px;
+    border-radius: 0;
+    transform: rotate(-35deg);
+}
+
+.smiley.angry .eye:first-of-type:after,
+#angry[type=radio]:checked ~ .smiley .eye:first-of-type:after {
+    transform: rotate(35deg);
+    left: auto;
+    right: -5px;
+}
+.smiley.happy .mouth,
+#happy[type=radio]:checked ~ .smiley .mouth{
+    animation: move-mouth-down 6s;
+    animation-iteration-count: infinite;
+}
+@keyframes move-mouth-down
+{
+    0%{
+        bottom: 18%;
+    }
+
+    25%{
+        bottom: 14%;
+    }
+
+    50%{
+        bottom: 14%;
+    }
+
+    75%{
+        bottom: 18%;
+    }
+
+    100%{
+        bottom: 18%;
+    }
+}
+
+
+.smiley.happy .eyes,
+#happy[type=radio]:checked ~ .smiley .eyes{
+    animation: move-eyes-down 6s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes move-eyes-down{
+    0%{
+        margin-top: 15%;
+    }
+
+    25%{
+        margin-top: 20%;
+    }
+    50%{
+        margin-top: 20%;
+    }
+    75%{
+        margin-top: 17%;
+    }
+
+    100%{
+        margin-top: 15%;
+    }
+}
+.smiley.happy .eye:nth-of-type(2),
+#happy[type=radio]:checked ~ .smiley .eye:nth-of-type(2){
+    animation: wink 4s;
+    height: 20px;
+    margin-top: 0;
+    animation-iteration-count: infinite;
+}
+@keyframes wink{
+    0%{
+        margin-top: 0;
+        height: 20px;
+    }
+    25%{
+        margin-top: 8px;
+        height: 3px;
+    }
+    50%{
+        margin-top: 8px;
+        height: 3px;
+    }
+    75%{
+        margin-top: 0;
+        height: 20px;
+    }
+    100%{
+        margin-top: 0;
+        height: 20px;
+    }
+    .smiley.normal .eye,
+#normal[type=radio]:checked ~ .smiley .eye{
+    animation: wink 4s;
+    height: 20px;
+    margin-top: 0;
+    animation-iteration-count: infinite;
+}
+.smiley.normal .eye,
+#normal[type=radio]:checked ~ .smiley .eye{
+    animation: blink 4s;
+    height: 20px;
+    margin-top: 0;
+    animation-delay: 5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blink{
+    0%{
+        height: 20px;
+        margin-top: 0;
+    }
+    3.25%{
+        height: 2px;
+        margin-top: 8px;
+    }
+    6.5%{
+        height: 20px;
+        margin-top: 0;
+    }
+    13%{
+        height: 2px;
+        margin-top: 8px;
+    }
+
+    100%{
+        height: 20px;}
+        .smiley.angry .eyes,
+.smiley.angry .mouth,
+#angry[type=radio]:checked ~ .smiley .eyes,
+#angry[type=radio]:checked ~ .smiley .mouth{
+    animation: move-angry-head 4s;
+    animation-iteration-count: infinite;
+}
+@keyframes move-angry-head {
+    0%{
+        transform: translateX(0%);
+    }
+    20%{
+        transform: translateX(-20%);
+    }
+    40%{
+        transform: translateX(15%);
+    }
+    60%{
+        transform: translateX(-10%);
+    }
+    80%{
+        transform: translateX(5%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+}
